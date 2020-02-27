@@ -20,7 +20,7 @@ add_filter( 'wpcf7_special_mail_tags', function ( $output, $name, $html ) {
         if ( isset( $_SERVER['HTTP_X_REAL_IP'] ) && filter_var( $_SERVER['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP ) ) {
             $output = $_SERVER['HTTP_X_REAL_IP'];
         }
-        else if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && filter_var( $_SERVER['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP ) ) {
+        else if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && filter_var( $_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP ) ) {
             $output = $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
     }
