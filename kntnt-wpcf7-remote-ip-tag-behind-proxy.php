@@ -17,10 +17,10 @@ defined( 'ABSPATH' ) || die;
 add_filter( 'wpcf7_special_mail_tags', function ( $output, $name, $html ) {
     $name = preg_replace( '/^wpcf7\./', '_', $name ); // for back-compat
     if ( '_remote_ip' == $name ) {
-        if ( isset( $_SERVER['HTTP_X_REAL_IP'] ) && $_SERVER['HTTP_X_REAL_IP'] ) {
+        if ( isset( $_SERVER['HTTP_X_REAL_IP'] ) && $_SERVER['HTTP_X_REAL_IP'] && filter_var( $_SERVER['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP ) ) {
             $output = $_SERVER['HTTP_X_REAL_IP'];
         }
-        else if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && $_SERVER['HTTP_X_FORWARDED_FOR'] ) {
+        else if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && $_SERVER['HTTP_X_FORWARDED_FOR'] && filter_var( $_SERVER['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP ) ) {
             $output = $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
     }
